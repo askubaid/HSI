@@ -260,7 +260,7 @@ function App() {
           )}
           <footer className='footer'>
             <div>
-              <img className='ist-logo' width={"50px"} src="./IST-logo.png" alt="IST Logo" />
+              <img className='ist-logo' width={"50px"} src="IST-logo.png" alt="IST Logo" />
               <p>Course: Pattern Recognition</p>
               <p>Submitted to: Dr. Khurram Khurshid</p>
               <p>Developed By: Ubaid Ur Rehman</p>
