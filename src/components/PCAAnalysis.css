@@ -1,0 +1,139 @@
+.pca-container {
+  margin-top: 24px;
+  padding: 16px;
+  background: var(--bg-panel, #2a2a2a);
+  border-radius: 8px;
+}
+
+.pca-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.pca-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #e0e0e0;
+}
+
+.pca-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.pca-controls label {
+  color: #ccc;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.pca-controls input[type="range"] {
+  flex: 1;
+  max-width: 260px;
+  min-width: 120px;
+}
+
+.pca-run-btn {
+  padding: 8px 22px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.pca-run-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.pca-run-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.pca-run-btn:disabled {
+  background: #444;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Spinner overlay */
+.pca-spinner-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 40px;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.pca-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: pca-spin 0.8s linear infinite;
+}
+
+@keyframes pca-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Component image grid */
+.pca-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.pca-component-card {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.pca-component-card:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.pca-component-card canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: pixelated;
+}
+
+.pca-component-label {
+  padding: 8px 10px;
+  font-size: 0.8rem;
+  color: #aaa;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pca-error {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+}
