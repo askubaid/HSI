@@ -26,7 +26,7 @@ function App() {
     setActiveBand(0)
     setForegroundMaskData(null)
     setActiveTab('ABCDE')
-    
+
     // Reset PCA state
     setPcaImageData(null)
     setPcaActiveBand(0)
@@ -40,7 +40,7 @@ function App() {
     setActiveBand(0)
     setForegroundMaskData(null)
     setActiveTab('ABCDE')
-    
+
     // Reset PCA state
     setPcaImageData(null)
     setPcaActiveBand(0)
@@ -71,7 +71,7 @@ function App() {
             <>
               {/* Tab Navigation */}
               <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', borderBottom: '1px solid #444', paddingBottom: '10px' }}>
-                <button 
+                <button
                   onClick={() => setActiveTab('ABCDE')}
                   style={{
                     padding: '8px 16px',
@@ -85,7 +85,7 @@ function App() {
                 >
                   ABCDE (Spectral Analysis & Clustering)
                 </button>
-                <button 
+                <button
                   onClick={() => setActiveTab('FG')}
                   style={{
                     padding: '8px 16px',
@@ -153,8 +153,8 @@ function App() {
 
               {activeTab === 'FG' && (
                 <>
-                  <PCAAnalysis 
-                    imageData={imageData} 
+                  <PCAAnalysis
+                    imageData={imageData}
                     activeBand={pcaActiveBand}
                     onSelectBand={setPcaActiveBand}
                     onPCAComplete={(pcaData) => {
@@ -164,11 +164,11 @@ function App() {
                       setPcaSelectedFeatures(Array.from({ length: pcaData.bands }, (_, i) => i))
                     }}
                   />
-                  
+
                   {pcaImageData && (
                     <div style={{ marginTop: '40px', borderTop: '2px solid #444', paddingTop: '20px' }}>
                       <h3 style={{ color: '#e0e0e0', marginBottom: '16px' }}>PCA Band Analysis & Clustering</h3>
-                      
+
                       {!pcaForegroundMaskData ? (
                         <ForegroundSelector
                           imageData={pcaImageData}
@@ -258,7 +258,18 @@ function App() {
               )}
             </>
           )}
+          <footer className='footer'>
+            <div>
+              <img className='ist-logo' width={"50px"} src="./IST-logo.png" alt="IST Logo" />
+              <p>Course: Pattern Recognition</p>
+              <p>Submitted to: Dr. Khurram Khurshid</p>
+              <p>Developed By: Ubaid Ur Rehman</p>
+              <p>Institute of Space Technology Islamabad Pakistan</p>
+            </div>
+
+          </footer>
         </section>
+
       </main>
     </div>
   )

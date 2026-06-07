@@ -9,14 +9,14 @@ export default function ImageUpload({ onImageLoad }) {
   const parseHdrFile = (headerText) => {
     const metadata = {}
     const lines = headerText.split('\n')
-    
+
     let currentKey = null;
     let currentValue = '';
 
     for (const line of lines) {
       const trimmed = line.trim()
       if (!trimmed || trimmed.startsWith(';')) continue
-      
+
       const match = trimmed.match(/^\s*([a-zA-Z0-9_ ]+)\s*=\s*(.+)/)
       if (match) {
         if (currentKey) {
@@ -28,11 +28,11 @@ export default function ImageUpload({ onImageLoad }) {
         currentValue += ' ' + trimmed;
       }
     }
-    
+
     if (currentKey) {
       metadata[currentKey] = currentValue.trim();
     }
-    
+
     return metadata
   }
 
@@ -41,16 +41,16 @@ export default function ImageUpload({ onImageLoad }) {
       setUploadStatus('Reading HDR metadata...');
       const hdrText = await hdrFile.text();
       const metadata = parseHdrFile(hdrText);
-      
+
       setUploadStatus('Loading RAW file into memory...');
       const arrayBuffer = await rawFile.arrayBuffer();
-      
+
       setUploadStatus('Starting HSI parsing worker...');
       const worker = new Worker(new URL('./workers/hsiParserWorker.js', import.meta.url), { type: 'module' });
-      
+
       worker.onmessage = (e) => {
         const { type, status, data, error } = e.data;
-        
+
         if (type === 'progress') {
           setUploadStatus(status);
         } else if (type === 'success') {
@@ -64,19 +64,19 @@ export default function ImageUpload({ onImageLoad }) {
           worker.terminate();
         }
       };
-      
+
       worker.onerror = (error) => {
         setUploadStatus('Worker failed to execute');
         console.error('Worker fatal error:', error);
         worker.terminate();
       };
-      
+
       worker.postMessage({
         metadata,
         arrayBuffer,
         fileName: hdrFile.name.replace('.hdr', '')
       }, [arrayBuffer]); // Transfer the arrayBuffer to avoid memory duplication
-      
+
     } catch (error) {
       setUploadStatus('Failed to process files: ' + error.message);
       console.error('HDR/RAW process error:', error);
@@ -155,7 +155,7 @@ export default function ImageUpload({ onImageLoad }) {
     if (files && files.length > 0) {
       const file = files[0]
       const extension = file.name.split('.').pop()?.toLowerCase()
-      
+
       // Check if it's a RAW file and we have an HDR file stored
       if (extension === 'raw') {
         const hdrDataStr = fileInputRef.current?.getAttribute('data-hdr-file')
@@ -171,7 +171,7 @@ export default function ImageUpload({ onImageLoad }) {
           return
         }
       }
-      
+
       processImage(file)
     }
   }
@@ -192,7 +192,7 @@ export default function ImageUpload({ onImageLoad }) {
     if (files.length > 0) {
       const file = files[0]
       const extension = file.name.split('.').pop()?.toLowerCase()
-      
+
       if (extension === 'hdr') {
         processImage(file)
       } else if (extension === 'raw') {
@@ -205,6 +205,7 @@ export default function ImageUpload({ onImageLoad }) {
 
   return (
     <div className="image-upload">
+
       <div
         className={`upload-zone ${isDragging ? 'dragging' : ''}`}
         onDragOver={handleDragOver}
@@ -230,8 +231,6 @@ export default function ImageUpload({ onImageLoad }) {
       <div className="upload-info">
         <h4>Supported Formats:</h4>
         <ul>
-          <li>JSON - HSI data format</li>
-          <li>PNG, JPG, JPEG - Image files</li>
           <li>HDR + RAW - ENVI HSI format (select .hdr first, then .raw)</li>
         </ul>
       </div>
