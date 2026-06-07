@@ -5,7 +5,7 @@ import ImageDisplay from './components/ImageDisplay'
 import KMeansHeatmap from './components/KMeansHeatmap'
 import ForegroundSelector from './components/ForegroundSelector'
 import PCAAnalysis from './components/PCAAnalysis'
-
+import istLogo from './IST-logo.png'
 function App() {
   const [imageData, setImageData] = useState(null)
   const [kValue, setKValue] = useState(3)
@@ -260,7 +260,7 @@ function App() {
           )}
           <footer className='footer'>
             <div>
-              <img className='ist-logo' width={"50px"} src="IST-logo.png" alt="IST Logo" />
+              <img className='ist-logo' width={"50px"} src={istLogo} alt="IST Logo" />
               <p>Course: Pattern Recognition</p>
               <p>Submitted to: Dr. Khurram Khurshid</p>
               <p>Developed By: Ubaid Ur Rehman</p>
