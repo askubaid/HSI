@@ -13,6 +13,36 @@ const CLUSTER_COLORS = [
   [130, 82, 39, 255],    // 7: Deep Brown
   [213, 94, 0, 255],     // 8: Burnt Orange
   [212, 18, 89, 255],    // 9: Hot Pink
+  [0, 114, 178, 255],    // 10: Steel Blue
+  [204, 121, 167, 255],  // 11: Dusty Rose
+  [86, 180, 233, 255],   // 12: Sky Blue
+  [0, 128, 64, 255],     // 13: Forest Green
+  [240, 228, 66, 255],   // 14: Lemon Yellow
+  [153, 0, 153, 255],    // 15: Deep Violet
+  [255, 127, 80, 255],   // 16: Coral
+  [0, 200, 200, 255],    // 17: Bright Teal
+  [170, 110, 40, 255],   // 18: Saddle Brown
+  [128, 128, 0, 255],    // 19: Olive
+  [255, 0, 255, 255],    // 20: Fuchsia
+  [0, 80, 80, 255],      // 21: Dark Teal
+  [255, 200, 150, 255],  // 22: Peach
+  [100, 149, 237, 255],  // 23: Cornflower Blue
+  [144, 238, 144, 255],  // 24: Light Green
+  [178, 34, 34, 255],    // 25: Firebrick
+  [218, 165, 32, 255],   // 26: Goldenrod
+  [72, 61, 139, 255],    // 27: Dark Slate Blue
+  [255, 105, 180, 255],  // 28: Hot Pink Light
+  [46, 139, 87, 255],    // 29: Sea Green
+  [199, 21, 133, 255],   // 30: Medium Violet Red
+  [0, 191, 255, 255],    // 31: Deep Sky Blue
+  [189, 183, 107, 255],  // 32: Dark Khaki
+  [148, 0, 211, 255],    // 33: Dark Violet
+  [255, 160, 122, 255],  // 34: Light Salmon
+  [32, 178, 170, 255],   // 35: Light Sea Green
+  [220, 20, 60, 255],    // 36: Crimson
+  [50, 205, 50, 255],    // 37: Lime Green
+  [255, 215, 0, 255],    // 38: Gold
+  [106, 90, 205, 255],   // 39: Slate Blue
 ];
 
 export default function KMeansHeatmap({ imageData, kValue, foregroundMaskData, skipL2Normalization, selectedFeatures }) {
@@ -228,7 +258,7 @@ export default function KMeansHeatmap({ imageData, kValue, foregroundMaskData, s
                   <span 
                     className="color-swatch" 
                     style={{ 
-                      backgroundColor: `rgba(${CLUSTER_COLORS[i][0]}, ${CLUSTER_COLORS[i][1]}, ${CLUSTER_COLORS[i][2]}, 1)` 
+                      backgroundColor: `rgba(${CLUSTER_COLORS[i % CLUSTER_COLORS.length][0]}, ${CLUSTER_COLORS[i % CLUSTER_COLORS.length][1]}, ${CLUSTER_COLORS[i % CLUSTER_COLORS.length][2]}, 1)` 
                     }}
                   ></span>
                   <span>Cluster {i + 1}</span>

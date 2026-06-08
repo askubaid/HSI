@@ -133,7 +133,7 @@ function App() {
                             id="k-slider"
                             type="range"
                             min="2"
-                            max="10"
+                            max="40"
                             value={kValue}
                             onChange={(e) => setKValue(parseInt(e.target.value))}
                             style={{ flex: 1, maxWidth: '300px' }}
@@ -235,7 +235,7 @@ function App() {
                                 id="pca-k-slider"
                                 type="range"
                                 min="2"
-                                max="10"
+                                max="40"
                                 value={pcaKValue}
                                 onChange={(e) => setPcaKValue(parseInt(e.target.value))}
                                 style={{ flex: 1, maxWidth: '300px' }}
